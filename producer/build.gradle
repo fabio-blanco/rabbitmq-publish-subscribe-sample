@@ -1,0 +1,18 @@
+plugins {
+    id 'application'
+    id 'rabbitmq-publish-subscribe-sample.java-conventions'
+}
+
+application {
+    mainClass = 'br.com.globalbyte.samples.rabbit.ps.producer.EmitLog'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "br.com.globalbyte.samples.rabbit.ps.producer.EmitLog"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
